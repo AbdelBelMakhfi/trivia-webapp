@@ -3,6 +3,7 @@ package com.trivia.trivia_api.service;
 import com.trivia.trivia_api.client.TriviaApiClient;
 import com.trivia.trivia_api.dto.OpenTriviaQuestion;
 import com.trivia.trivia_api.dto.SafeQuestion;
+import com.trivia.trivia_api.exception.QuestionNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class TriviaService {
 
     public boolean checkAnswer(String questionId, String answer) {
         String correct = correctAnswersByQuestionId.get(questionId);
-        return correct != null && correct.equals(answer);
+        if (correct == null) {
+            throw new QuestionNotFoundException(questionId);
+        }
+        return correct.equals(answer);
     }
 }
