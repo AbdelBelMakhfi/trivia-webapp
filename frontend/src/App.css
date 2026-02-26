@@ -3,3 +3,96 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.status {
+  font-size: 1.1rem;
+}
+
+.status.error {
+  color: #e57373;
+}
+
+.trivia h1 {
+  margin-bottom: 0.5rem;
+}
+
+.score {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.question-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.question {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.question .category {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin: 0 0 0.25rem;
+}
+
+.question-text {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.answer-btn {
+  text-align: left;
+  padding: 0.6em 1em;
+}
+
+.answer-btn.selected {
+  border-color: #646cff;
+  background: rgba(100, 108, 255, 0.15);
+}
+
+.answer-btn.result-correct {
+  border-color: #2e7d32;
+  background: rgba(46, 125, 50, 0.25);
+  color: #81c784;
+}
+
+.answer-btn.result-incorrect {
+  border-color: #c62828;
+  background: rgba(198, 40, 40, 0.2);
+  color: #e57373;
+}
+
+.answer-btn:disabled {
+  cursor: default;
+}
+
+.submit-btn {
+  padding: 0.75em 1.5em;
+  font-size: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .question {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .answer-btn.result-correct {
+    color: #2e7d32;
+  }
+
+  .answer-btn.result-incorrect {
+    color: #c62828;
+  }
+}

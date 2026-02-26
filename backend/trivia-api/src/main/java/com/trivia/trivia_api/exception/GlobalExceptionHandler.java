@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,5 +36,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.BAD_GATEWAY)
                 .body(Map.of("error", "External trivia service unavailable"));
+    }
+
+    @ExceptionHandler(HttpClientErrorException.class)
+    public ResponseEntity<Map<String, String>> handleHttpClientError(HttpClientErrorException ex) {
+        if (ex.getStatusCode() == HttpStatus.TOO_MANY_REQUESTS) {
+            return ResponseEntity
+                    .status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body(Map.of("error", "The trivia service is temporarily unavailable. Please try again in a moment."));
+        }
+        return ResponseEntity
+                .status(ex.getStatusCode())
+                .body(Map.of("error", ex.getStatusText()));
     }
 }
