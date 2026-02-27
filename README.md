@@ -27,7 +27,3 @@ Frontend verwacht de API op `http://localhost:8080`.
 
 - **Backend:** `GET /questions` (vragen zonder juiste antwoord), `POST /checkanswers` (antwoord controleren).
 - **Frontend:** praat alleen met deze API; de Open Trivia API wordt alleen door de backend aangeroepen.
-
-## Later (optioneel)
-
-- Antwoorden laten verlopen, score bijhouden, Docker, CI/CD.
