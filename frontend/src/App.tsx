@@ -11,6 +11,7 @@ function App() {
   const [results, setResults] = useState<Record<string, boolean> | null>(null)
   const [checking, setChecking] = useState(false)
   const loadedRef = useRef(false)
+  const initialLoadDoneRef = useRef(false)
 
   const loadQuestions = useCallback((signal?: AbortSignal) => {
     setLoading(true)
@@ -35,6 +36,8 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (initialLoadDoneRef.current) return
+    initialLoadDoneRef.current = true
     loadQuestions()
   }, [loadQuestions])
 
